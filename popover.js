@@ -65,10 +65,10 @@ async function setHp(id, f) {
 }
 var dupArm = null;
 async function dups() {
-  const items = await OBR.scene.items.getItems((i) => i.layer !== "MAP");
+  const items = await OBR.scene.items.getItems((i) => i.type === "IMAGE" && ["CHARACTER", "PROP", "MOUNT"].includes(i.layer));
   const seen = /* @__PURE__ */ new Map(), extra = [];
   for (const i of items) {
-    const key = [i.type, i.layer, labelOf(i), Math.round(i.position.x), Math.round(i.position.y), i.attachedTo || ""].join("|");
+    const key = [i.type, i.layer, labelOf(i), i.image?.url, Math.round(i.position.x), Math.round(i.position.y), i.attachedTo || ""].join("|");
     if (seen.has(key)) extra.push(i);
     else seen.set(key, i);
   }
