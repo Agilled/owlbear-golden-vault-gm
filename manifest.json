@@ -1,15 +1,15 @@
 {
   "manifest_version": 1,
   "name": "Golden Vault GM",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "KP/PW przy tokenach (tylko GM), licznik PW, łączenie teleportów i usuwanie duplikatów.",
   "author": "Kamil",
-  "icon": "icon.svg",
-  "background_url": "background.html",
+  "icon": "https://agilled.github.io/owlbear-golden-vault-gm/icon.svg",
+  "background_url": "https://agilled.github.io/owlbear-golden-vault-gm/background.html",
   "action": {
     "title": "Golden Vault GM",
-    "icon": "icon.svg",
-    "popover": "index.html",
+    "icon": "https://agilled.github.io/owlbear-golden-vault-gm/icon.svg",
+    "popover": "https://agilled.github.io/owlbear-golden-vault-gm/index.html",
     "width": 400,
     "height": 600
   }

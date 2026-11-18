@@ -68,7 +68,7 @@ async function syncLabels() {
 OBR.onReady(async () => {
   OBR.contextMenu.create({
     id: `${K.ns}/link`,
-    icons: [{ icon: "icon.svg", label: "GV: po\u0142\u0105cz jako teleport \u2194", filter: { min: 2, max: 2, roles: ["GM"] } }],
+    icons: [{ icon: "https://agilled.github.io/owlbear-golden-vault-gm/icon.svg", label: "GV: po\u0142\u0105cz jako teleport \u2194", filter: { min: 2, max: 2, roles: ["GM"] } }],
     onClick: async (ctx) => {
       const [a, b] = ctx.items;
       await OBR.scene.items.updateItems([a.id, b.id], (ds) => {
@@ -79,7 +79,7 @@ OBR.onReady(async () => {
   });
   OBR.contextMenu.create({
     id: `${K.ns}/unlink`,
-    icons: [{ icon: "icon.svg", label: "GV: roz\u0142\u0105cz teleport", filter: { min: 1, roles: ["GM"], every: [{ key: ["metadata", PORTAL], operator: "!=", value: void 0 }] } }],
+    icons: [{ icon: "https://agilled.github.io/owlbear-golden-vault-gm/icon.svg", label: "GV: roz\u0142\u0105cz teleport", filter: { min: 1, roles: ["GM"], every: [{ key: ["metadata", PORTAL], operator: "!=", value: void 0 }] } }],
     onClick: async (ctx) => {
       await OBR.scene.items.updateItems(ctx.items.map((i) => i.id), (ds) => {
         for (const d of ds) delete d.metadata[PORTAL];
@@ -89,8 +89,8 @@ OBR.onReady(async () => {
   });
   OBR.contextMenu.create({
     id: `${K.ns}/hp`,
-    icons: [{ icon: "icon.svg", label: "GV: PW / KP", filter: { min: 1, max: 1, roles: ["GM"], every: [{ key: "layer", value: "CHARACTER" }] } }],
-    embed: { url: "embed.html", height: 96 }
+    icons: [{ icon: "https://agilled.github.io/owlbear-golden-vault-gm/icon.svg", label: "GV: PW / KP", filter: { min: 1, max: 1, roles: ["GM"], every: [{ key: "layer", value: "CHARACTER" }] } }],
+    embed: { url: "https://agilled.github.io/owlbear-golden-vault-gm/embed.html", height: 96 }
   });
   OBR.scene.onReadyChange((r) => r && syncLabels());
   OBR.scene.items.onChange(() => syncLabels());
