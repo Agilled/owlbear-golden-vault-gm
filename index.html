@@ -1,0 +1,35 @@
+<!doctype html><html lang="pl"><head><meta charset="utf-8"><style>
+body{margin:0;padding:10px 12px;font:13px system-ui,sans-serif;color:#eee;background:transparent}
+h3{margin:12px 0 6px;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#ffd27a}
+button{background:#3d3d55;color:#fff;border:0;border-radius:6px;padding:5px 8px;cursor:pointer;font:inherit}
+button:hover{background:#55557a}
+.bar{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
+#msg{margin-top:8px;font-size:12px;line-height:1.35}#msg.ok{color:#9be29b}#msg.err{color:#ffb070}
+#q{width:100%;box-sizing:border-box;margin:6px 0;padding:5px 8px;border-radius:6px;border:1px solid #555;background:#222a;color:#fff}
+.row{display:flex;gap:4px;align-items:center;padding:3px 0;border-bottom:1px solid #ffffff14}
+.row.hid .nm{opacity:.55;font-style:italic}
+.row .nm{flex:1;text-align:left;background:none;padding:2px 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.row .ac{width:42px;opacity:.85}.row .mx{width:30px;opacity:.7}
+.row button[data-d]{padding:2px 6px}
+.row input{width:38px;background:#222a;color:#fff;border:2px solid #666;border-radius:6px;padding:2px;text-align:center}
+.dim{opacity:.6}
+</style><script type="module" src="./popover.js"></script></head><body>
+<h3>Statystyki</h3>
+<div class="bar">
+  <button id="fill" title="Wpisuje KP/PW z tabeli przygody tokenom, które ich jeszcze nie mają">Uzupełnij scenę</button>
+  <button id="refill" title="Nadpisuje wszystkim">Nadpisz</button>
+  <button id="heal">Pełne PW</button>
+  <button id="clear">Wyczyść</button>
+</div>
+<label class="bar" style="margin-top:6px"><input type="checkbox" id="lbl"> Etykiety KP/PW nad tokenami (widzisz tylko Ty)</label>
+<h3>Walka · <span id="count">0</span></h3>
+<input id="q" placeholder="Szukaj… (np. R18, ghul)">
+<div id="list"></div>
+<h3>Teleporty i porządki</h3>
+<div class="bar">
+  <button id="link" title="Zaznacz 2 elementy (Shift+klik)">Połącz 2 zaznaczone ↔</button>
+  <button id="portals">Sprawdź teleporty</button>
+  <button id="dups">Usuń duplikaty</button>
+</div>
+<div id="msg" class="dim">Nazwa → zaznacza i pokazuje token. Kursor na nazwie → atak.</div>
+</body></html>

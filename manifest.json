@@ -1,0 +1,16 @@
+{
+  "manifest_version": 1,
+  "name": "Golden Vault GM",
+  "version": "1.0.0",
+  "description": "KP/PW przy tokenach (tylko GM), licznik PW, łączenie teleportów i usuwanie duplikatów.",
+  "author": "Kamil",
+  "icon": "icon.svg",
+  "background_url": "background.html",
+  "action": {
+    "title": "Golden Vault GM",
+    "icon": "icon.svg",
+    "popover": "index.html",
+    "width": 400,
+    "height": 600
+  }
+}
