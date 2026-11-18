@@ -42,7 +42,7 @@ async function syncLabels() {
         if (!l) {
           const sx = Math.abs(w.t.scale?.x ?? 1);
           add.push(
-            buildLabel().plainText(w.text).position({ x: w.t.position.x, y: w.t.position.y - dpi * 0.55 * sx }).attachedTo(id).layer("TEXT").locked(true).disableHit(true).disableAttachmentBehavior(["VISIBLE", "SCALE", "ROTATION"]).fontSize(22).fontWeight(700).fillColor("#ffffff").backgroundColor(w.color).backgroundOpacity(0.9).padding(6).cornerRadius(8).pointerHeight(0).metadata({ [K.label]: id }).build()
+            buildLabel().plainText(w.text).position({ x: w.t.position.x, y: w.t.position.y - dpi * 0.55 * sx }).attachedTo(id).layer("TEXT").locked(true).disableHit(true).disableAttachmentBehavior(["VISIBLE", "SCALE", "ROTATION"]).fontSize(22).fontWeight(700).fillColor("#ffffff").backgroundColor(w.color).backgroundOpacity(0.9).padding(6).cornerRadius(8).pointerHeight(0).maxViewScale(1).metadata({ [K.label]: id }).build()
           );
         } else if (l.text.plainText !== w.text || l.style.backgroundColor !== w.color) {
           upd.push([l.id, w]);
@@ -90,7 +90,7 @@ OBR.onReady(async () => {
   OBR.contextMenu.create({
     id: `${K.ns}/hp`,
     icons: [{ icon: "https://agilled.github.io/owlbear-golden-vault-gm/icon.svg", label: "GV: PW / KP", filter: { min: 1, max: 1, roles: ["GM"], every: [{ key: "layer", value: "CHARACTER" }] } }],
-    embed: { url: "https://agilled.github.io/owlbear-golden-vault-gm/embed.html", height: 96 }
+    embed: { url: "https://agilled.github.io/owlbear-golden-vault-gm/embed.html?v=102", height: 96 }
   });
   OBR.scene.onReadyChange((r) => r && syncLabels());
   OBR.scene.items.onChange(() => syncLabels());

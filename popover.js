@@ -97,6 +97,33 @@ async function link() {
   });
   msg("Teleport \u2194 po\u0142\u0105czony. Przeci\u0105gnij token na znacznik, by przetestowa\u0107.");
 }
+var ROUTE = "local.golden-vault/route";
+async function linkRoutes() {
+  const items = await OBR.scene.items.getItems((i) => i.metadata[ROUTE] !== void 0);
+  const g = /* @__PURE__ */ new Map();
+  for (const i of items) {
+    const r = i.metadata[ROUTE];
+    if (!g.has(r)) g.set(r, []);
+    g.get(r).push(i);
+  }
+  const ok = [], bad = [];
+  const pairs = /* @__PURE__ */ new Map();
+  for (const [r, arr] of g) {
+    if (arr.length !== 2) {
+      bad.push(`${r} (${arr.length} szt.)`);
+      continue;
+    }
+    const [a, b] = arr;
+    if (a.metadata[PORTAL] === b.id && b.metadata[PORTAL] === a.id) continue;
+    pairs.set(a.id, b.id);
+    pairs.set(b.id, a.id);
+    ok.push(r);
+  }
+  if (pairs.size) await OBR.scene.items.updateItems([...pairs.keys()], (ds) => {
+    for (const d of ds) d.metadata[PORTAL] = pairs.get(d.id);
+  });
+  msg(`Po\u0142\u0105czono: ${ok.length ? ok.join(", ") : "nic nowego"}${bad.length ? ". Pomini\u0119to (nie para \u2014 u\u017Cyj \u201EUsu\u0144 duplikaty\u201D): " + bad.join(", ") : ""}`, !bad.length);
+}
 async function listPortals() {
   const items = await OBR.scene.items.getItems((i) => i.metadata[PORTAL] !== void 0);
   const ids = new Set(items.map((i) => i.id));
@@ -142,6 +169,7 @@ OBR.onReady(async () => {
   $("#dups").onclick = dups;
   $("#link").onclick = link;
   $("#portals").onclick = listPortals;
+  $("#routes").onclick = linkRoutes;
   $("#q").oninput = render;
   $("#list").onclick = async (e) => {
     const row = e.target.closest(".row");
