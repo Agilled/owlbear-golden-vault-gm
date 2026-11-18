@@ -13,7 +13,16 @@ button:hover{background:#55557a}
 .row button[data-d]{padding:2px 6px}
 .row input{width:38px;background:#222a;color:#fff;border:2px solid #666;border-radius:6px;padding:2px;text-align:center}
 .dim{opacity:.6}
-</style><script type="module" src="./popover.js?v=3"></script></head><body>
+#card{background:#00000033;border:1px solid #ffd27a44;border-radius:8px;padding:8px 10px;margin-bottom:4px}
+#card .ct{font-weight:700;font-size:14px;color:#fff}#card .cl{margin:3px 0 6px;color:#ddd}
+#card .ab{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;margin:4px 0;text-align:center}
+#card .ab span{background:#ffffff12;border-radius:6px;padding:3px 0;font-weight:700}
+#card .ab i{display:block;font-style:normal;font-size:10px;color:#ffd27a;font-weight:600}
+#card .ab em{display:block;font-style:normal;font-size:11px;opacity:.8;font-weight:500}
+#card .sk{font-size:12px;opacity:.85;margin:2px 0}#card ul{margin:4px 0 0;padding-left:16px}#card li{margin:2px 0;font-size:12px}
+</style><script type="module" src="./popover.js?v=4"></script></head><body>
+<h3>Wybrany token</h3>
+<div id="card"><p class="dim">Zaznacz token na mapie.</p></div>
 <h3>Statystyki</h3>
 <div class="bar">
   <button id="fill" title="Wpisuje KP/PW z tabeli przygody tokenom, które ich jeszcze nie mają">Uzupełnij scenę</button>

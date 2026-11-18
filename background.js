@@ -90,7 +90,7 @@ OBR.onReady(async () => {
   OBR.contextMenu.create({
     id: `${K.ns}/hp`,
     icons: [{ icon: "https://agilled.github.io/owlbear-golden-vault-gm/icon.svg", label: "GV: PW / KP", filter: { min: 1, max: 1, roles: ["GM"], every: [{ key: "layer", value: "CHARACTER" }] } }],
-    embed: { url: "https://agilled.github.io/owlbear-golden-vault-gm/embed.html?v=102", height: 96 }
+    embed: { url: "https://agilled.github.io/owlbear-golden-vault-gm/embed.html?v=103", height: 118 }
   });
   OBR.scene.onReadyChange((r) => r && syncLabels());
   OBR.scene.items.onChange(() => syncLabels());

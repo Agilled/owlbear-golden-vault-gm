@@ -1,6 +1,7 @@
 import {
+  matchCard,
   matchStats
-} from "./c-2IGOKSCJ.js";
+} from "./c-PJN4V6D3.js";
 import {
   K,
   labelOf,
@@ -25,6 +26,8 @@ async function load() {
   $("#max").value = s.max;
   $("#atk").textContent = s.atk || "";
   $("#hp").style.borderColor = statColor(s);
+  const c = matchCard(labelOf(it));
+  $("#abl").textContent = c ? c.ab.join(" · ") : "";
 }
 async function save(patch) {
   await OBR.scene.items.updateItems([id], (ds) => {

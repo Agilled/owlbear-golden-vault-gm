@@ -1,6 +1,7 @@
 import {
+  matchCard,
   matchStats
-} from "./c-2IGOKSCJ.js";
+} from "./c-PJN4V6D3.js";
 import {
   K,
   PORTAL,
@@ -62,6 +63,25 @@ async function setHp(id, f) {
       d.metadata[K.stats] = s;
     }
   });
+}
+var lastShown = null;
+function showCard(item) {
+  const el = $("#card");
+  if (!item) { el.innerHTML = '<p class="dim">Zaznacz token na mapie albo kliknij nazwę na liście poniżej.</p>'; return; }
+  const c = matchCard(labelOf(item));
+  const s = item.metadata[K.stats];
+  if (!c) { el.innerHTML = `<div class="ct">${esc(labelOf(item))}</div><p class="dim">Brak karty w tabeli (gracz albo postać niewalcząca).</p>`; return; }
+  el.innerHTML = `<div class="ct">${esc(labelOf(item))} <span class="dim">· ${esc(c.t)}</span></div>
+    <div class="cl">${esc(c.l)}${s ? ` · <b style="color:${statColor(s)}">teraz PW ${s.hp}/${s.max}</b>` : ""}</div>
+    <div class="ab">${c.ab.map((a) => { const [n, v, m] = a.split(" "); return `<span><i>${n}</i>${v}<em>${m}</em></span>`; }).join("")}</div>
+    ${c.sk.map((x) => `<div class="sk">${esc(x)}</div>`).join("")}
+    <ul>${c.li.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>`;
+}
+async function updSel() {
+  const sel = await OBR.player.getSelection() || [];
+  if (sel.length) { const [it] = await OBR.scene.items.getItems([sel[0]]); if (it && it.layer === "CHARACTER") lastShown = it; }
+  else if (lastShown) { const [it] = await OBR.scene.items.getItems([lastShown.id]); lastShown = it || null; }
+  showCard(lastShown);
 }
 var dupArm = null;
 async function dups() {
@@ -191,7 +211,10 @@ OBR.onReady(async () => {
     const id = e.target.closest(".row").dataset.id;
     setHp(id, (h) => /^[+-]/.test(v) ? h + Number(v) : Number(v));
   };
+  OBR.player.onChange(() => updSel());
+  updSel();
   OBR.scene.items.onChange(() => {
+    if (lastShown) updSel();
     if (document.activeElement?.tagName !== "INPUT" || document.activeElement.id === "q") render();
   });
   OBR.scene.onReadyChange((r) => r && render());
